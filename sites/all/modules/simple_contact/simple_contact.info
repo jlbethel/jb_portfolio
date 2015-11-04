@@ -1,0 +1,5 @@
+name = Simple contact
+description = Sets default value of the Display author and date information to 0
+core = 7.x
+package = Epicodus Examples
+files[] = simple_contact.module

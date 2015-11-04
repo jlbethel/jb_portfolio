@@ -1,0 +1,68 @@
+<?php
+
+function collatz_menu() {
+
+  $items['collatz'] = array(
+    'title' => "Calculate Collatz Sequence",
+    'type' => MENU_NORMAL_ITEM,
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('collatz_form'),
+  );
+
+  $items['collatz_result'] = array(
+    'title' => 'Your Results',
+    'page callback' => 'collatz_results',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function collatz_form() {
+  $form['user_number'] = array(
+    '#title' => 'Number',
+    '#type' => 'textfield',
+    '#description' => t('Enter the Number you want put through the Collatz sequence.'),
+    '#element_validate' => array('element_validate_integer_positive'),
+    '#required' => TRUE,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+function collatz_sequence($input) {
+  $numbers_array = [];
+  $collatz_number = $input;
+  $count = 0;
+  while ($collatz_number != 1){
+    $count++;
+    if($collatz_number % 2 == 0) {
+      $collatz_number /=  2;
+      array_push($numbers_array, $collatz_number);
+    } else {
+      $collatz_number = ($collatz_number * 3) +1;
+      array_push($numbers_array, $collatz_number);
+    }
+}
+return $numbers_array;
+}
+
+function collatz_form_submit($form, &$form_state) {
+  $user_number = $form_state['values']['user_number'];
+  $result = collatz_sequence($user_number);
+  $imploded_result = implode(", ", $result);
+  $_SESSION['number_output'] = $imploded_result;
+  $_SESSION['count_result'] = count($result);
+  $form_state['redirect'] = 'collatz_result';
+}
+
+function collatz_results() {
+  $number_results = $_SESSION['number_output'];
+  $count_result = $_SESSION['count_result'];
+  return '<p> Here is your sequence: ' . $number_results . '.</p> <p> It took ' . $count_result . ' step(s) to complete the sequence.</p>';
+}
