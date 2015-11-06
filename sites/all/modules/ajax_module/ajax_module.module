@@ -1,5 +1,10 @@
-name = Ajax Module
-description = Display Nodes with Ajax.
-package = My Modules
-core = 7.x
-files[] = ajax_module.module
+<?php
+function mymodule_menu() {
+    $items['path-to-ajax/%/%'] = array(
+            'access arguments' => array('access content'),
+            'page callback' => 'ajax_module_ajax_callback',
+            'page arguments' => array(1,2),
+            'type' => MENU_CALLBACK,
+    );
+    return $items;
+}

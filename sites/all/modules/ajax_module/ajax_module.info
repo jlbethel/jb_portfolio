@@ -1,0 +1,5 @@
+name = Ajax Module
+description = Display Nodes with Ajax.
+package = My Modules
+core = 7.x
+files[] = ajax_module.module
