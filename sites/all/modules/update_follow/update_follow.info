@@ -1,0 +1,5 @@
+name = Update Follow
+description = Adds links to follow module
+core = 7.x
+package = My Modules
+files[] = follow_alter.module
