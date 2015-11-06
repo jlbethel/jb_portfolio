@@ -5,7 +5,7 @@
 
 ##Description
 
-A portfolio about me.
+My portfolio.
 
 ##Setup
 
