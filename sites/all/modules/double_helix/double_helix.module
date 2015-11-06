@@ -24,7 +24,7 @@ function double_helix_form() {
     '#title' => 'Half of your DNA helix',
     '#type' => 'textfield',
     '#description' => t('Enter half of your DNA helix. I assume you know it off the top of your head.'),
-    // '#element_validate' => array(''),
+    '#element_validate' => array('element_validate_nucleotide'),
     '#required' => TRUE,
   );
 
@@ -66,4 +66,14 @@ function double_helix_success() {
   $helix_first_half = $_SESSION['first_half'];
   $helix_second_half = $_SESSION['second_half'];
   return'<p> The first half of your double helix is: ' . $helix_first_half . ' and the second half is: ' . $helix_second_half . '. </p>';
+}
+
+function element_validate_nucleotide($element) {
+  $acceptable_input_array = ['A', 'T', 'C', 'G'];
+  $input_check_array = str_split($element['#value']);
+  foreach($input_check_array as $letter) {
+    if(!in_array($letter, $acceptable_input_array)) {
+      form_error($element, t("'A', 'T', 'C', and 'G' are the only valid inputs"));
+    }
+  }
 }
