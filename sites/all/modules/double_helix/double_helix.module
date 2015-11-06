@@ -53,3 +53,17 @@ function find_pair($input) {
   $second_half_helix_string = implode('', $second_half_helix_array);
   return $second_half_helix_string;
 }
+
+function double_helix_form_submit($form, &$form_state) {
+  $user_nucleotides = $form_state['values']['nucleotides'];
+  $result = find_pair($user_nucleotides);
+  $_SESSION['first_half'] = $user_nucleotides;
+  $_SESSION['second_half'] = $result;
+  $form_state['redirect'] = 'double_helix_results';
+}
+
+function double_helix_success() {
+  $helix_first_half = $_SESSION['first_half'];
+  $helix_second_half = $_SESSION['second_half'];
+  return'<p> The first half of your double helix is: ' . $helix_first_half . ' and the second half is: ' . $helix_second_half . '. </p>';
+}
