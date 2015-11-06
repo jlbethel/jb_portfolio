@@ -15,6 +15,7 @@ function double_helix_menu() {
     'access callback' => TRUE,
     'page callback' => 'double_helix_success',
   );
+  return $items;
 }
 
 function double_helix_form() {
@@ -32,4 +33,13 @@ function double_helix_form() {
     '#value' => 'Submit',
   );
   return $form;
+}
+
+function find_pair($input) {
+  $nucleotide = $input;
+  $nucleotide_array = [];
+  if($nucleotide == 'A') {
+    $nucleotide = 'T';
+  }
+  return $nucleotide;
 }

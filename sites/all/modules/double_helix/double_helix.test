@@ -1,0 +1,21 @@
+<?php
+//Unit tests
+class DoubleHelixTest extends DrupalUnitTestCase {
+    public static function getInfo() {
+      return array(
+        'name' => 'Double Helix Unit tests',
+        'description' => 'Unit tests for Double Helix module',
+        'group' => 'Double Helix Tests',
+      );
+    }
+
+    function testDoubleHelix() {
+      $description = "Given user input of 'a', app will return 't'";
+      $input = 'A';
+      $result = find_pair($input);
+      $expected_output = "T";
+      $this->assertEqual($result, $expected_output, $description);
+    }
+}
+
+//Functional tests
