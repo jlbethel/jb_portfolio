@@ -27,6 +27,12 @@ class DoubleHelixTest extends DrupalUnitTestCase {
       $result = find_pair($input);
       $expected_output = "G";
       $this->assertEqual($result, $expected_output, $description);
+
+      $description = "Can find pair to a string of nucleotides";
+      $input = "ATCG";
+      $result = find_pair($input);
+      $expected_output = "TAGC";
+      $this->assertEqual($result, $expected_output, $description);
     }
 }
 

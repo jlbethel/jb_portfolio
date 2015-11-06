@@ -36,16 +36,20 @@ function double_helix_form() {
 }
 
 function find_pair($input) {
-  $nucleotide = $input;
-  $nucleotide_array = [];
-  if($nucleotide == 'A') {
-    $nucleotide = 'T';
-  }elseif ($nucleotide == 'T') {
-    $nucleotide = 'A';
-  }elseif ($nucleotide == "C") {
-    $nucleotide = 'G';
-  }elseif ($nucleotide == 'G') {
-    $nucleotide = 'G';
+  $first_half_helix_array = str_split($input);
+  $second_half_helix_array = array();
+
+  foreach($first_half_helix_array as $nucleotide) {
+    if($nucleotide == 'A') {
+      array_push($second_half_helix_array, "T");
+    }elseif ($nucleotide == 'T') {
+      array_push($second_half_helix_array, "A");
+    }elseif ($nucleotide == "C") {
+      array_push($second_half_helix_array, "G");
+    }elseif ($nucleotide == 'G') {
+      array_push($second_half_helix_array, "C");
+    }
   }
-  return $nucleotide;
+  $second_half_helix_string = implode('', $second_half_helix_array);
+  return $second_half_helix_string;
 }
