@@ -5,7 +5,7 @@
 
 ##Description
 
-My portfolio.
+My portfolio. With a double helix module (in the navigation menu) that calculates the second half of a double helix based on a user inputted first half. Also includes an Ajax view on the front page. 
 
 ##Setup
 
