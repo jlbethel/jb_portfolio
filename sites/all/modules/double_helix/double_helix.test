@@ -10,10 +10,22 @@ class DoubleHelixTest extends DrupalUnitTestCase {
     }
 
     function testDoubleHelix() {
-      $description = "Given user input of 'a', app will return 't'";
+      $description = "Given user input of 'A', app will return 'T'";
       $input = 'A';
       $result = find_pair($input);
       $expected_output = "T";
+      $this->assertEqual($result, $expected_output, $description);
+
+      $description = "Can find pair to 'A' or 'T'";
+      $input = "T";
+      $result = find_pair($input);
+      $expected_output = "A";
+      $this->assertEqual($result, $expected_output, $description);
+
+      $description = "Can find pair to 'A' or 'T' 'C' or 'G'";
+      $input = "C";
+      $result = find_pair($input);
+      $expected_output = "G";
       $this->assertEqual($result, $expected_output, $description);
     }
 }

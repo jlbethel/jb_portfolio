@@ -40,6 +40,12 @@ function find_pair($input) {
   $nucleotide_array = [];
   if($nucleotide == 'A') {
     $nucleotide = 'T';
+  }elseif ($nucleotide == 'T') {
+    $nucleotide = 'A';
+  }elseif ($nucleotide == "C") {
+    $nucleotide = 'G';
+  }elseif ($nucleotide == 'G') {
+    $nucleotide = 'G';
   }
   return $nucleotide;
 }
