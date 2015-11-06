@@ -37,3 +37,29 @@ class DoubleHelixTest extends DrupalUnitTestCase {
 }
 
 //Functional tests
+
+class DoubleHelixFunctionalTests extends DrupalWebTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'Double Helix Functional Tests',
+      'description' => 'Functional Tests for Double Helix module',
+      'group' => 'Double Helix Tests',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp(array('double_helix'));
+  }
+
+  public function testDoubleHelixFormInput() {
+    $info = array();
+    $info['nucleotides'] = 'ATCG';
+
+    $this->drupalPost('double_helix', $info, t('Submit'));
+
+    $path['alias'] = 'double_helix_results';
+    path_save($path);
+
+    $this->assertText('The first half of your double helix is: ATCG and the second half is: TAGC.');
+  }  
+}
