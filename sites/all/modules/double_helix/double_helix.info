@@ -1,0 +1,7 @@
+name = Double Helix
+description = Determines other have of a double helix based on a user entering the first half.
+packages = My Modules
+core = 7.x
+files[] = double_helix.module
+files[] = double_helix.test
+dependencis[] = simpletest

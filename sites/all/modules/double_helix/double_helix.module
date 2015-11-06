@@ -1,0 +1,35 @@
+<?php
+
+function double_helix_menu() {
+  $items = array();
+  $items['double_helix'] = array(
+    'title' => 'Double Helix',
+    'type' => MENU_NORMAL_ITEM,
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('double_helix_form'),
+  );
+  $items['double_helix_results'] = array(
+    'title' => 'Success',
+    'type' => MENU_CALLBACK,
+    'access callback' => TRUE,
+    'page callback' => 'double_helix_success',
+  );
+}
+
+function double_helix_form() {
+  $form = array();
+  $form['nucleotides'] = array(
+    '#title' => 'Half of your DNA helix',
+    '#type' => 'textfield',
+    '#description' => t('Enter half of your DNA helix. I assume you know it off the top of your head.'),
+    // '#element_validate' => array(''),
+    '#required' => TRUE,
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
